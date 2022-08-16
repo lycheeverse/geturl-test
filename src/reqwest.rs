@@ -3,14 +3,15 @@
 
 //! A URL-get backend based on the `reqwest` crate.
 
+use crate::{status_base::StatusBackend, tt_note};
+use anyhow::bail;
+use anyhow::Result;
 use reqwest::{
     blocking::{Client, Response},
     header::{HeaderMap, RANGE},
     redirect::Policy,
     StatusCode, Url,
 };
-use tectonic_errors::{anyhow::bail, Result};
-use tectonic_status_base::{tt_note, StatusBackend};
 
 use crate::{GetUrlBackend, RangeReader};
 

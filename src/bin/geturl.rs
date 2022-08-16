@@ -1,6 +1,5 @@
 use std::env;
-use tectonic_geturl::{DefaultBackend, GetUrlBackend};
-use tectonic_status_base::plain::PlainStatusBackend;
+use tectonic_geturl::{plain::PlainStatusBackend, DefaultBackend, GetUrlBackend};
 
 fn main() {
     if let Some(url) = env::args().nth(1) {

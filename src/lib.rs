@@ -22,10 +22,15 @@
 //! intended that the choice of HTTP backend is a build-time one, not a runtime
 //! one.
 
+pub mod plain;
+mod status_base;
+
+pub use status_base::MessageKind;
+
+use anyhow::Result;
 use cfg_if::cfg_if;
+use status_base::StatusBackend;
 use std::io::Read;
-use tectonic_errors::Result;
-use tectonic_status_base::StatusBackend;
 
 /// A trait for reading byte ranges from an HTTP resource.
 pub trait RangeReader {
@@ -56,8 +61,6 @@ pub trait GetUrlBackend: Default {
     /// Open a range reader that can perform byte-range reads on the specified URL.
     fn open_range_reader(&self, url: &str) -> Self::RangeReader;
 }
-
-pub mod null;
 
 #[cfg(feature = "curl")]
 pub mod curl;

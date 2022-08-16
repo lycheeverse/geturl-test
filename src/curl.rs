@@ -5,7 +5,6 @@
 
 use curl::easy::Easy;
 use std::io::Cursor;
-use tectonic_errors::{anyhow::bail, Result};
 use tectonic_status_base::StatusBackend;
 
 use crate::{GetUrlBackend, RangeReader};
