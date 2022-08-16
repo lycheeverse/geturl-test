@@ -3,9 +3,10 @@
 
 //! A URL-get backend based on the `curl` crate.
 
+use crate::status_base::StatusBackend;
+use anyhow::{bail, Result};
 use curl::easy::Easy;
 use std::io::Cursor;
-use tectonic_status_base::StatusBackend;
 
 use crate::{GetUrlBackend, RangeReader};
 
