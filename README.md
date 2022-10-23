@@ -12,7 +12,13 @@ Test with curl
 
 ```
 # Test with curl
-cargo run --features curl -- 'https://catboost.ai'
+cargo run --no-default-features --features curl -- 'https://catboost.ai'
+```
+
+Test with reqwest-impersonate
+
+```
+cargo run --no-default-features --features reqwest_impersonate -- 'https://catboost.ai'
 ```
 
 ## Credits
