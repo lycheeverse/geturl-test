@@ -23,7 +23,16 @@ anyhow = "1.0.62"
 cfg-if = "^1.0"
 curl = { version = "^0.4", optional = true }
 reqwest = { version = "^0.11", optional = true, features = ["blocking"] }
+reqwest-impersonate = { git = "https://github.com/4JX/reqwest-impersonate.git", default-features = false, features = [
+    "chrome",
+    "blocking",
+], optional = true }
+
+[patch.crates-io]
+hyper = { git = "https://github.com/4JX/hyper.git", branch = "v0.14.18-patched" }
+h2 = { git = "https://github.com/4JX/h2.git", branch = "imp" }
 
 [features]
 default = ["reqwest"]
+reqwest_impersonate = ["reqwest-impersonate"]
 native-tls-vendored = ["reqwest/native-tls-vendored"]

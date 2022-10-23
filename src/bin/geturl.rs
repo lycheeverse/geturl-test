@@ -6,8 +6,26 @@ fn main() {
         let mut backend = DefaultBackend::default();
         let mut status = PlainStatusBackend::default();
 
-        let response = backend.get_url(&url, &mut status).unwrap();
-        println!("{}", response.status());
+        let mut response = backend.get_url(&url, &mut status).unwrap();
+
+        #[cfg(feature = "curl")]
+        {
+            use std::io::Read;
+            let mut buf = Vec::new();
+            response.read_to_end(&mut buf).unwrap();
+            println!("{} bytes", buf.len());
+            // try to convert buf to a string
+            let s = String::from_utf8_lossy(&buf);
+            println!("{}", s);
+            // print status code
+            let status_code = response.status_code();
+            println!("status code: {}", status_code);
+        }
+        #[cfg(not(feature = "curl"))]
+        {
+            println!("response: {:?}", response);
+            println!("status: {}", response.status());
+        }
     } else {
         println!("Usage: geturl <url>");
     }

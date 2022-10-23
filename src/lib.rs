@@ -68,9 +68,14 @@ pub mod curl;
 #[cfg(feature = "reqwest")]
 pub mod reqwest;
 
+#[cfg(feature = "reqwest_impersonate")]
+pub mod reqwest_impersonate;
+
 cfg_if! {
     if #[cfg(feature = "reqwest")] {
         pub use crate::reqwest::ReqwestBackend as DefaultBackend;
+    } else if #[cfg(feature = "reqwest_impersonate")] {
+        pub use crate::reqwest_impersonate::ReqwestImpersonateBackend as DefaultBackend;
     } else if #[cfg(feature = "curl")] {
         pub use crate::curl::CurlBackend as DefaultBackend;
     } else {
