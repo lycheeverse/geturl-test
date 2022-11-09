@@ -17,9 +17,6 @@ fn main() {
             // try to convert buf to a string
             let s = String::from_utf8_lossy(&buf);
             println!("{}", s);
-            // print status code
-            let status_code = response.status_code();
-            println!("status code: {}", status_code);
         }
         #[cfg(not(feature = "curl"))]
         {
