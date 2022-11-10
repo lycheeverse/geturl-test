@@ -23,4 +23,4 @@ cargo run --no-default-features --features reqwest_impersonate -- 'https://catbo
 
 ## Credits
 
-Based on https://github.com/tectonic-typesetting/tectonic
+Based on https://github.com/4JX/reqwest-impersonate
